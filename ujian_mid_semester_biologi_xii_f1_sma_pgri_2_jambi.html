@@ -1,0 +1,835 @@
+<!-- ... existing code ... -->
+    <title>Ujian Mid Semester Biologi XII F1 - SMA PGRI 2 Jambi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        /* Custom scrollbar for panel */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Announcement Banner -->
+    <div class="bg-amber-500 text-slate-900 font-medium px-4 py-2.5 text-sm shadow-md">
+        <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <i data-lucide="cloud-fog" class="w-5 h-5 flex-shrink-0 animate-pulse"></i>
+                <span><strong>Pemberitahuan Daring:</strong> Sehubungan dengan kabut asap di Kota Jambi, pembelajaran & Ujian Mid Semester SMA PGRI 2 Jambi dilaksanakan secara Online.</span>
+            </div>
+            <span class="hidden md:inline-block bg-amber-600 text-white text-xs px-2.5 py-1 rounded-full font-semibold">Daring Mode</span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-indigo-900 text-white border-b-4 border-indigo-500 shadow-lg sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-indigo-900 shadow-md font-bold text-xl">
+                    <i data-lucide="zap" class="w-7 h-7 text-indigo-700"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold leading-tight">SMA PGRI 2 JAMBI</h1>
+                    <p class="text-xs md:text-sm text-indigo-200">Mid Semester Genap - Biologi Kelas XII F1</p>
+                </div>
+            </div>
+            <div class="text-left md:text-right text-xs md:text-sm bg-indigo-950/60 p-2 rounded-lg border border-indigo-800">
+                <p class="text-indigo-300 font-medium">Guru Pengampu:</p>
+                <p class="font-bold text-white flex items-center gap-1">
+                    <i data-lucide="user-check" class="w-4 h-4 text-emerald-400"></i>
+                    Reri Petra Nanda, M.Pd., Gr.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-3 md:px-6 py-6 flex-grow w-full">
+        
+        <!-- SECTION 1: Identity Form (Shown initialy) -->
+        <div id="section-identity" class="max-w-xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden transition-all duration-300">
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 p-6 text-white text-center">
+                <i data-lucide="file-signature" class="w-12 h-12 mx-auto mb-2 opacity-90"></i>
+                <h2 class="text-2xl font-bold">Formulir Peserta Ujian</h2>
+                <p class="text-indigo-100 text-sm mt-1">Mata Pelajaran: Biologi - Enzim & Metabolisme</p>
+            </div>
+            
+            <form id="form-start-exam" onsubmit="startExam(event)" class="p-6 space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Nama Lengkap Siswa <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <i data-lucide="user" class="w-5 h-5 absolute left-3 top-3 text-slate-400"></i>
+                        <input type="text" id="student-name" required placeholder="Contoh: Budi Santoso" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Kelas <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 absolute left-3 top-3 text-slate-400"></i>
+                        <input type="text" id="student-class" value="XII F1" required readonly class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-100 text-slate-600 font-semibold text-sm cursor-not-allowed">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Motto Hidup / Pesan Motivasi <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <i data-lucide="quote" class="w-5 h-5 absolute left-3 top-3 text-slate-400"></i>
+                        <input type="text" id="student-motto" required placeholder="Contoh: Kerja keras layaknya enzim katalase memecah hambatan" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition text-sm">
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-xs text-indigo-900 space-y-1">
+                    <p class="font-bold flex items-center gap-1.5"><i data-lucide="info" class="w-4 h-4 text-indigo-600"></i> Informasi Ujian:</p>
+                    <ul class="list-disc list-inside space-y-1 pl-1 text-slate-700">
+                        <li>Materi: <strong>Enzim & Metabolisme Sel (Katabolisme & Anabolisme)</strong></li>
+                        <li>Jumlah Soal: <strong>25 Soal HOTS</strong> Pilihan Ganda (A-E)</li>
+                        <li>Waktu Pengerjaan: <strong>60 Menit</strong></li>
+                        <li>Bobot per Soal: <strong>4 Poin</strong> (Total Skor Max: 100)</li>
+                        <li>Hasil Nilai: Dikirim otomatis ke WhatsApp Guru Mapel.</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 text-base">
+                    <i data-lucide="play-circle" class="w-5 h-5"></i>
+                    Mulai Ujian Sekarang
+                </button>
+            </form>
+        </div>
+
+        <!-- SECTION 2: Exam Environment (Hidden initially) -->
+        <div id="section-exam" class="hidden">
+            <!-- Top Controls Bar (Timer & Quick Summary) -->
+            <div class="bg-white rounded-2xl p-4 shadow-md border border-slate-200 mb-6 flex flex-wrap items-center justify-between gap-4 sticky top-16 z-20">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-indigo-100 text-indigo-700 rounded-xl">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500 font-medium">Peserta Ujian:</div>
+                        <div id="display-student-name" class="font-bold text-slate-800 text-sm md:text-base">Budi Santoso (XII F1)</div>
+                    </div>
+                </div>
+
+                <!-- Floating/Fixed Timer Block -->
+                <div class="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-xl shadow border border-slate-800">
+                    <i data-lucide="timer" class="w-5 h-5 text-amber-400 animate-spin" style="animation-duration: 8s;"></i>
+                    <span class="text-xs text-slate-300 font-medium">Sisa Waktu:</span>
+                    <span id="timer-display" class="font-mono text-lg font-bold text-amber-400">60:00</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Question View Column (3/4 on large screen) -->
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 md:p-7 relative">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+                            <span class="bg-indigo-100 text-indigo-800 font-bold px-3 py-1 rounded-lg text-sm flex items-center gap-1.5">
+                                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                                Soal No. <span id="current-q-num">1</span> dari 25
+                            </span>
+                            <span id="topic-badge" class="text-xs font-semibold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full border border-slate-200">
+                                Enzim
+                            </span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div id="question-text" class="text-slate-800 font-medium text-base md:text-lg leading-relaxed mb-6">
+                            Loading pertanyaan...
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-container" class="space-y-3">
+                            <!-- Options will be dynamically rendered -->
+                        </div>
+
+                        <!-- Navigation Bottom Buttons -->
+                        <div class="flex items-center justify-between pt-6 mt-8 border-t border-slate-100">
+                            <button id="btn-prev" onclick="navigateQuestion(-1)" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                                <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                            </button>
+
+                            <button id="btn-next" onclick="navigateQuestion(1)" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm flex items-center gap-1.5 transition shadow">
+                                Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Side Panel (1/4 on large screen) -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-5 sticky top-36">
+                        <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2">
+                            <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-600"></i>
+                            Navigasi Soal
+                        </h3>
+
+                        <!-- Color Indicator Legend -->
+                        <div class="grid grid-cols-3 gap-1 mb-4 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <div class="flex items-center gap-1">
+                                <span class="w-3 h-3 rounded-full bg-slate-200 border border-slate-300 inline-block"></span> Belum
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Dijawab
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="w-3 h-3 rounded-full bg-indigo-600 inline-block"></span> Aktif
+                            </div>
+                        </div>
+
+                        <!-- Question Grid (1-25) -->
+                        <div id="navigation-grid" class="grid grid-cols-5 gap-2 max-h-64 lg:max-h-none overflow-y-auto custom-scrollbar p-1">
+                            <!-- Dynamically generated buttons 1-25 -->
+                        </div>
+
+                        <!-- Finish Button -->
+                        <button onclick="confirmSubmitExam()" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2 text-sm">
+                            <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                            Selesaikan Ujian
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SECTION 3: Result Recap Modal (Hidden initially) -->
+    <div id="modal-result" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden transform transition-all my-8">
+            <div class="bg-gradient-to-r from-indigo-700 via-indigo-800 to-blue-900 p-6 text-white text-center relative">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3 border border-white/20">
+                    <i data-lucide="award" class="w-10 h-10 text-amber-400"></i>
+                </div>
+                <h2 class="text-2xl font-extrabold">Hasil Mid Semester</h2>
+                <p class="text-indigo-200 text-xs mt-1">Biologi XII F1 - SMA PGRI 2 Jambi</p>
+            </div>
+
+            <div class="p-6 space-y-5">
+                <!-- Score Card Box -->
+                <div class="bg-slate-50 border-2 border-indigo-100 rounded-2xl p-4 text-center">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Nilai Akhir Anda</span>
+                    <div id="modal-score" class="text-5xl font-extrabold text-indigo-700 my-1">0</div>
+                    <div id="modal-score-status" class="text-xs font-semibold px-3 py-1 rounded-full inline-block bg-indigo-100 text-indigo-800">
+                        Total Poin dari 100 Maksimal
+                    </div>
+                </div>
+
+                <!-- Detail Recap Table -->
+                <div class="bg-slate-50 rounded-xl p-4 text-xs space-y-2.5 border border-slate-200">
+                    <div class="flex justify-between border-b pb-2 border-slate-200">
+                        <span class="text-slate-500">Nama Lengkap:</span>
+                        <span id="modal-student-name" class="font-bold text-slate-800"></span>
+                    </div>
+                    <div class="flex justify-between border-b pb-2 border-slate-200">
+                        <span class="text-slate-500">Kelas:</span>
+                        <span id="modal-student-class" class="font-bold text-slate-800">XII F1</span>
+                    </div>
+                    <div class="flex justify-between border-b pb-2 border-slate-200">
+                        <span class="text-slate-500">Motto Hidup:</span>
+                        <span id="modal-student-motto" class="font-medium text-slate-700 italic max-w-[200px] truncate"></span>
+                    </div>
+                    <div class="flex justify-between border-b pb-2 border-slate-200">
+                        <span class="text-slate-500">Jawaban Benar:</span>
+                        <span id="modal-correct-count" class="font-bold text-emerald-600">0 Soal</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Jawaban Salah / Kosong:</span>
+                        <span id="modal-wrong-count" class="font-bold text-rose-600">0 Soal</span>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 flex items-start gap-2">
+                    <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5"></i>
+                    <span>Sesuai instruksi, Anda wajib mengirimkan hasil nilai ini ke WhatsApp Guru Pengampu (<strong>Bpk. Reri Petra Nanda, M.Pd., Gr.</strong>).</span>
+                </div>
+
+                <!-- WA Send Button -->
+                <button onclick="sendToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
+                    <i data-lucide="message-square" class="w-5 h-5 fill-current"></i>
+                    Kirim Nilai ke WA Guru (085377704248)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 text-center border-t border-slate-800 mt-auto">
+        <p>© 2026 SMA PGRI 2 Jambi • Ujian Mid Semester Online Biologi Kelas XII F1</p>
+    </footer>
+
+    <script>
+        // 25 HOTS Questions for Grade XII F1 (Enzim & Metabolisme)
+        const questionsData = [
+            // --- TOPIK 1: ENZIM (Kerja Enzim, Faktor, Inhibitor) ---
+            {
+                id: 1,
+                topic: "Kerja Enzim",
+                question: "Seorang peneliti mereaksikan substrat A dengan enzim X. Ketika konsentrasi substrat ditingkatkan terus-menerus, laju reaksi meningkat tajam namun akhirnya konstan (mencapai batas jenuh Vmax). Penjelasan teoretis paling tepat mengenai kondisi kejenuhan tersebut adalah...",
+                options: [
+                    "A. Enzim mengalami denaturasi akibat penambahan substrat yang berlebihan",
+                    "B. Seluruh sisi aktif enzim telah terikat oleh substrat (terjadinya kejenuhan enzim)",
+                    "C. Substrat berakting sebagai inhibitor non-kompetitif bagi enzim X",
+                    "D. Energi aktivasi reaksi meningkat drastis melebihi ambang batas",
+                    "E. Koenzim lepas dari apoenzim sehingga reaksi terhenti"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 2,
+                topic: "Teori Kerja Enzim",
+                question: "Perbedaan mendasar antara teori 'Lock and Key' (Kunci dan Anak Kunci) dengan teori 'Induced Fit' (Induksi Pas) dalam menjelaskan mekanisme kerja enzim adalah...",
+                options: [
+                    "A. Lock and Key menyatakan sisi aktif kaku, sedangkan Induced Fit menyatakan sisi aktif fleksibel menyesuaikan bentuk substrat",
+                    "B. Lock and Key bekerja untuk reaksi anabolisme, sedangkan Induced Fit hanya untuk katabolisme",
+                    "C. Induced Fit tidak membutuhkan kofaktor, sedangkan Lock and Key mutlak membutuhkan kofaktor",
+                    "D. Lock and Key menyatakan enzim bersifat reversibel, sedangkan Induced Fit bersifat ireversibel",
+                    "E. Lock and Key hanya berlaku pada enzim pencernaan, sedangkan Induced Fit pada enzim respirasi"
+                ],
+                answer: 0 // A
+            },
+            {
+                id: 3,
+                topic: "Inhibitor Enzim",
+                question: "Pada suatu percobaan, penambahan zat Z menyebabkan penurunan laju reaksi enzimatik. Namun, ketika jumlah substrat ditambah dalam jumlah melimpah, kecepatan reaksi kembali normal seperti semula. Berdasarkan fenomena ini, zat Z bertindak sebagai...",
+                options: [
+                    "A. Inhibitor Non-kompetitif",
+                    "B. Inhibitor Kompetitif",
+                    "C. Aktivator Alosterik",
+                    "D. Koenzim Permanen",
+                    "E. Inhibitor Ireversibel"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 4,
+                topic: "Faktor Kerja Enzim",
+                question: "Grafik hubungan antara suhu dan aktivitas enzim pepsin menunjukkan puncak pada suhu 37°C. Ketika suhu dinaikkan hingga 70°C, aktivitas enzim turun hingga 0%. Penyebab hilangnya aktivitas enzimatik pada suhu tinggi tersebut adalah...",
+                options: [
+                    "A. Enzim membeku sehingga substrat tidak dapat bergerak",
+                    "B. Sisi aktif enzim berubah bentuk permanen akibat kerusakan ikatan hidrogen (Denaturasi)",
+                    "C. Enzim dikonversi menjadi substrat baru",
+                    "D. Koenzim mengalami ionisasi berlebihan",
+                    "E. Produk reaksi menghambat sisi alosterik enzim"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 5,
+                topic: "Struktur Enzim",
+                question: "Enzim lengkap (Holoenzim) tersusun atas komponen protein dan non-protein. Komponen non-protein berupa molekul organik kompleks yang berikatan longgar dan membantu pemindahan gugus kimia disebut...",
+                options: [
+                    "A. Apoenzim",
+                    "B. Gugus Prostetik",
+                    "C. Koenzim (seperti NAD⁺, FAD, Vitamin B)",
+                    "D. Kofaktor Ion Anorganik (seperti Fe²⁺, Mg²⁺)",
+                    "E. Zimogen"
+                ],
+                answer: 2 // C
+            },
+            {
+                id: 6,
+                topic: "Inhibitor Enzim",
+                question: "Sianida merupakan racun mematikan karena berikatan pada sisi alosterik enzim sitokrom c oksidase dalam rantai transpor elektron, sehingga mengubah bentuk sisi aktif enzim meskipun tidak bersaing langsung dengan oksigen. Mekanisme kerja sianida tergolong...",
+                options: [
+                    "A. Inhibitor Kompetitif",
+                    "B. Inhibitor Non-Kompetitif",
+                    "C. Aktivator Enzim",
+                    "D. Penghentian Umpan Balik (Feedback Inhibition)",
+                    "E. Kofaktor Antagonis"
+                ],
+                answer: 1 // B
+            },
+
+            // --- TOPIK 2: KATABOLISME (Respirasi Aerob & Anaerob) ---
+            {
+                id: 7,
+                topic: "Katabolisme - Glikolisis",
+                question: "Glikolisis merupakan tahap awal katabolisme karbohidrat yang berlangsung di dalam sitosol. Hasil bersih dari pemecahan 1 molekul Glukosa (6 C) pada tahapan glikolisis adalah...",
+                options: [
+                    "A. 2 Asam Piruvat, 2 NADH, dan 2 ATP",
+                    "B. 2 Asetil Ko-A, 2 FADH₂, dan 4 ATP",
+                    "C. 1 Asam Sitrat, 2 NADH, dan 2 ATP",
+                    "D. 2 Asam Laktat, 2 CO₂, dan 36 ATP",
+                    "E. 2 Oksaloasetat, 2 NADH, dan 2 ATP"
+                ],
+                answer: 0 // A
+            },
+            {
+                id: 8,
+                topic: "Katabolisme - Dekarboksilasi Oksidatif",
+                question: "Sebelum memasuki Siklus Krebs, Asam Piruvat hasil glikolisis ditranspor ke matriks mitokondria untuk mengalami Dekarboksilasi Oksidatif. Pada tahap ini terjadi reaksi konversi berupa...",
+                options: [
+                    "A. Pengubahan Glukosa menjadi Glukosa-6-Fosfat",
+                    "B. Pengubahan Asam Piruvat (3C) menjadi Asetil Ko-A (2C), menghasilkan 2 CO₂ dan 2 NADH",
+                    "C. Penggabungan Asetil Ko-A dengan Oksaloasetat menjadi Asam Sitrat",
+                    "D. Penguraian Asam Sitrat menjadi Asam Suksinat menghasilkan FADH₂",
+                    "E. Pemecahan air menjadi oksigen dan ion hidrogen"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 9,
+                topic: "Katabolisme - Siklus Krebs",
+                question: "Pada Siklus Krebs, molekul pertama yang terbentuk dari penggabungan Asetil Ko-A (2 C) dengan Asam Oksaloasetat (4 C) adalah...",
+                options: [
+                    "A. Asam Isositrat",
+                    "B. Asam Sitrat (6 C)",
+                    "C. Asam Alfa-Ketoglutarat",
+                    "D. Asam Malat",
+                    "E. Asam Fumarat"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 10,
+                topic: "Katabolisme - Transpor Elektron",
+                question: "Pada tahap Rantai Transpor Elektron yang berlangsung di membran dalam (krista) mitokondria, molekul Oksigen (O₂) bertindak sebagai...",
+                options: [
+                    "A. Donor elektron utama untuk kompleks I",
+                    "B. Akseptor (penerima) elektron dan proton terakhir yang membentuk H₂O",
+                    "C. Pemecah asam piruvat di awal reaksi",
+                    "D. Sumber energi utama penggerak pompa proton ATP sintase",
+                    "E. Katalisator pembuat NADH"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 11,
+                topic: "Katabolisme - Perhitungan ATP",
+                question: "Secara teoritis, oksidasi penuh 1 molekul glukosa melalui respirasi aerob menghasilkan total 38 ATP (atau 36 ATP pada sel eukariotik). Jika terdapat 5 molekul glukosa yang mengalami glikolisis hingga transpor elektron, jumlah total NADH yang dihasilkan adalah...",
+                options: [
+                    "A. 10 NADH",
+                    "B. 30 NADH",
+                    "C. 50 NADH",
+                    "D. 20 NADH",
+                    "E. 100 NADH"
+                ],
+                answer: 2 // C (1 glukosa = 10 NADH -> 2 Glikolisis + 2 DO + 6 Krebs. 5 glukosa = 50 NADH)
+            },
+            {
+                id: 12,
+                topic: "Katabolisme - Fermentasi",
+                question: "Seorang atlet lari sprint mengalami kram dan pegal pada otot paha setelah berlari cepat. Penyebab utama kondisi tersebut secara fisiologis adalah...",
+                options: [
+                    "A. Penumpukan asam alkohol akibat fermentasi gula dalam otot",
+                    "B. Kekurangan oksigen pada sel otot sehingga terjadi fermentasi asam laktat yang menumpuk di jaringan otot",
+                    "C. Kelebihan produksi CO₂ di dalam matriks mitokondria otot",
+                    "D. Kerusakan ikatan aktin dan miosin akibat suhu tubuh tinggi",
+                    "E. Terhentinya siklus krebs karena kekurangan gula darah"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 13,
+                topic: "Katabolisme - Fermentasi Alkohol",
+                question: "Perbedaan utama antara fermentasi alkohol yang dilakukan oleh ragi (Saccharomyces cerevisiae) dengan fermentasi asam laktat terletak pada...",
+                options: [
+                    "A. Fermentasi alkohol menghasilkan CO₂ dan Asetaldehida, sedangkan fermentasi asam laktat tidak menghasilkan CO₂",
+                    "B. Fermentasi asam laktat menghasilkan ATP lebih banyak dari fermentasi alkohol",
+                    "C. Fermentasi alkohol membutuhkan Oksigen, sedangkan fermentasi asam laktat tidak",
+                    "D. Fermentasi alkohol terjadi di mitokondria, sedangkan asam laktat di sitosol",
+                    "E. Fermentasi asam laktat menggunakan bahan baku asam piruvat, sedangkan fermentasi alkohol menggunakan sukrosa"
+                ],
+                answer: 0 // A
+            },
+            {
+                id: 14,
+                topic: "Katabolisme - Metabolisme Lemak/Protein",
+                question: "Sebelum masuk ke dalam Siklus Krebs untuk dipergunakan sebagai sumber energi, asam lemak (lipid) harus dipecah terlebih dahulu melalui proses pemotongan 2-karbon yang disebut...",
+                options: [
+                    "A. Deaminasi Oksidatif",
+                    "B. Beta-Oksidasi",
+                    "C. Glukoneogenesis",
+                    "D. Dekarboksilasi",
+                    "E. Glikogenolisis"
+                ],
+                answer: 1 // B
+            },
+
+            // --- TOPIK 3: ANABOLISME (Fotosintesis & Siklus Calvin) ---
+            {
+                id: 15,
+                topic: "Anabolisme - Reaksi Terang",
+                question: "Pada reaksi terang fotosintesis di dalam membran tilakoid, fotolisis air (pemecahan molekul H₂O menggunakan energi cahaya) menghasilkan...",
+                options: [
+                    "A. Glukosa dan CO₂",
+                    "B. Elektron, Proton (H⁺), dan Gas Oksigen (O₂)",
+                    "C. NADPH dan RuBP",
+                    "D. ATP dan Asam Fosfogliserat (PGA)",
+                    "E. Karbon Dioksida dan ATP"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 16,
+                topic: "Anabolisme - Fotosistem",
+                question: "Pernyataan yang tepat mengenai Fotosistem I (P700) dan Fotosistem II (P680) pada fotofosforilasi non-siklik adalah...",
+                options: [
+                    "A. Fotosistem II menyerap cahaya panjang gelombang 700 nm dan menghasilkan ATP saja",
+                    "B. Fotosistem I memecah air sedangkan Fotosistem II menghasilkan NADPH",
+                    "C. Fotosistem II menyerap cahaya 680 nm memicu fotolisis air, lalu elektron dialirkan ke Fotosistem I untuk membentuk NADPH",
+                    "D. Kedua fotosistem berada di dalam stroma kloroplas",
+                    "E. Fotosistem I bekerja hanya pada malam hari tanpa bantuan klorofil a"
+                ],
+                answer: 2 // C
+            },
+            {
+                id: 17,
+                topic: "Anabolisme - Siklus Calvin",
+                question: "Siklus Calvin (Reaksi Gelap) fotosintesis berlangsung di dalam stroma. Tahap Fiksasi Karbon melibatkan pengikatan molekul CO₂ dari udara oleh senyawa karbon ribulosa-1,5-bisfosfat (RuBP) yang dikatalisis oleh enzim...",
+                options: [
+                    "A. Rubisco (RuBP Karboksilase-Oksigenase)",
+                    "B. ATP Sintase",
+                    "C. Dehidrogenase",
+                    "D. Heksokinase",
+                    "E. Pepsinogen"
+                ],
+                answer: 0 // A
+            },
+            {
+                id: 18,
+                topic: "Anabolisme - Tahapan Siklus Calvin",
+                question: "Urutan tahapan yang benar dalam Siklus Calvin pada reaksi gelap fotosintesis adalah...",
+                options: [
+                    "A. Reduksi -> Fiksasi Karbon -> Regenerasi RuBP",
+                    "B. Fiksasi Karbon -> Reduksi -> Regenerasi RuBP",
+                    "C. Fotolisis -> Fiksasi Karbon -> Sintesis Glukosa",
+                    "D. Regenerasi RuBP -> Fotofosforilasi -> Reduksi",
+                    "E. Oksidasi -> Reduksi -> Karboksilasi"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 19,
+                topic: "Anabolisme - Hasil Fotosintesis",
+                question: "Untuk menghasilkan 1 molekul Glukosa (C₆H₁₂O₆) yang stabil melalui Siklus Calvin, diperlukan fiksasi CO₂ sebanyak...",
+                options: [
+                    "A. 1 molekul CO₂",
+                    "B. 3 molekul CO₂",
+                    "C. 6 molekul CO₂",
+                    "D. 12 molekul CO₂",
+                    "E. 2 molekul CO₂"
+                ],
+                answer: 2 // C
+            },
+            {
+                id: 20,
+                topic: "Anabolisme - Tumbuhan C3, C4, CAM",
+                question: "Tumbuhan kaktus dan nanas yang hidup di daerah kering (xeriofit) mengadaptasi fotosintesis dengan membuka stomata hanya pada malam hari untuk mengikat CO₂ menjadi asam malat. Tipe fotosintesis ini dinamakan...",
+                options: [
+                    "A. Jalur Tumbuhan C3",
+                    "B. Jalur Tumbuhan C4",
+                    "C. Jalur Tumbuhan CAM (Crassulacean Acid Metabolism)",
+                    "D. Jalur Kemosintesis",
+                    "E. Jalur Fotorespirasi"
+                ],
+                answer: 2 // C
+            },
+            {
+                id: 21,
+                topic: "Anabolisme - Kemosintesis",
+                question: "Bakteri Nitrosomonas dan Nitrosococcus memperoleh energi untuk menyusun bahan organik bukan dari cahaya matahari, melainkan dari reaksi oksidasi senyawa anorganik Amonium (NH₄⁺) menjadi Nitrit (NO₂⁻). Proses anabolisme ini dinamakan...",
+                options: [
+                    "A. Fotosintesis",
+                    "B. Kemosintesis",
+                    "C. Fermentasi",
+                    "D. Dinitrifikasi",
+                    "E. Asimilasi"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 22,
+                topic: "Eksperimen Fotosintesis",
+                question: "Pada percobaan Ingenhousz menggunakan tanaman Hydriflla verticillata, terbentuk gelembung-gelembung udara pada tabung reaksi. Ketika ditambahkan Natrium Bikarbonat (NaHCO₃) ke dalam air, jumlah gelembung bertambah drastis. Alasan penambahan NaHCO₃ memperbanyak gelembung adalah...",
+                options: [
+                    "A. NaHCO₃ menaikkan suhu air sehingga enzim fotosintesis bekerja lebih cepat",
+                    "B. NaHCO₃ terurai menyuplai tambahan CO₂ yang menjadi bahan baku fotosintesis",
+                    "C. NaHCO₃ bertindak sebagai klorofil buatan dalam air",
+                    "D. NaHCO₃ memecah molekul air secara spontan tanpa cahaya",
+                    "E. NaHCO₃ menyerap O₂ berlebih dari dalam air"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 23,
+                topic: "Eksperimen Fotosintesis",
+                question: "Pada percobaan Sachs, daun ditutup kertas timah, direbus dalam air mendidih, lalu dimasukkan ke alkohol panas, dan ditetesi larutan iodium/lugol. Bagian daun yang tidak tertutup kertas timah berwarna biru kehitaman. Hal ini membuktikan bahwa fotosintesis...",
+                options: [
+                    "A. Membutuhkan air dan menghasilkan Oksigen",
+                    "B. Membutuhkan cahaya matahari dan menghasilkan Amilum (karbohidrat)",
+                    "C. Membutuhkan CO₂ dan menghasilkan protein",
+                    "D. Berlangsung optimal dalam alkohol panas",
+                    "E. Menguraikan klorofil menjadi zat tepung"
+                ],
+                answer: 1 // B
+            },
+            {
+                id: 24,
+                topic: "Keterkaitan Katabolisme & Anabolisme",
+                question: "Pernyataan yang menghubungkan antara Katabolisme dan Anabolisme secara tepat adalah...",
+                options: [
+                    "A. Katabolisme bersifat eksergonik membebaskan energi (ATP) yang kemudian digunakan oleh Anabolisme yang bersifat endergonik",
+                    "B. Katabolisme menyusun molekul kompleks, sedangkan Anabolisme memecah molekul sederhana",
+                    "C. Katabolisme hanya terjadi pada tumbuhan, sedangkan Anabolisme hanya terjadi pada hewan",
+                    "D. Katabolisme membutuhkan NADPH dari reaksi gelap fotosintesis",
+                    "E. Katabolisme dan Anabolisme keduanya tidak membutuhkan keterlibatan enzim"
+                ],
+                answer: 0 // A
+            },
+            {
+                id: 25,
+                topic: "Keterkaitan Metabolisme",
+                question: "Inhibisi umpan balik (Feedback Inhibition) dalam jalur metabolisme sel bertindak sebagai mekanisme kontrol seluler yang penting. Jalur ini bekerja ketika...",
+                options: [
+                    "A. Produk akhir dari jalur metabolisme menghambat enzim pertama pada jalur tersebut jika jumlah produk sudah mencukupi",
+                    "B. Substrat awal merusak sisi aktif enzim secara permanen",
+                    "C. Enzim menghancurkan produk akhir agar reaksi berulang terus",
+                    "D. Hormon memicu percepatan pemecahan ATP saat sel istirahat",
+                    "E. Gen mematikan sintesis protein di ribosom"
+                ],
+                answer: 0 // A
+            }
+        ];
+
+        // Application State
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questionsData.length).fill(null);
+        let studentData = { name: '', class: 'XII F1', motto: '' };
+        let timerSeconds = 60 * 60; // 60 minutes
+        let timerInterval = null;
+        let examSubmitted = false;
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+
+        // Function to Start Exam
+        function startExam(event) {
+            event.preventDefault();
+            
+            const nameInput = document.getElementById('student-name').value.trim();
+            const mottoInput = document.getElementById('student-motto').value.trim();
+
+            if (!nameInput || !mottoInput) {
+                alert("Harap isi Nama dan Motto terlebih dahulu!");
+                return;
+            }
+
+            studentData.name = nameInput;
+            studentData.motto = mottoInput;
+
+            // Update UI with student info
+            document.getElementById('display-student-name').innerText = `${studentData.name} (${studentData.class})`;
+
+            // Switch view
+            document.getElementById('section-identity').classList.add('hidden');
+            document.getElementById('section-exam').classList.remove('hidden');
+
+            // Render Nav Grid & Render First Question
+            renderNavigationGrid();
+            loadQuestion(0);
+
+            // Start Timer
+            startTimer();
+
+            // Refresh icons inside rendered elements
+            lucide.createIcons();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+
+                const minutes = Math.floor(timerSeconds / 60);
+                const seconds = timerSeconds % 60;
+
+                const formattedMin = String(minutes).padStart(2, '0');
+                const formattedSec = String(seconds).padStart(2, '0');
+
+                document.getElementById('timer-display').innerText = `${formattedMin}:${formattedSec}`;
+
+                // Warning color on low time
+                if (timerSeconds <= 300) { // < 5 minutes
+                    document.getElementById('timer-display').classList.remove('text-amber-400');
+                    document.getElementById('timer-display').classList.add('text-rose-500', 'animate-pulse');
+                }
+
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Waktu ujian telah habis! Sistem akan otomatis mengumpulkan ujian Anda.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function loadQuestion(index) {
+            currentQuestionIndex = index;
+            const q = questionsData[index];
+
+            document.getElementById('current-q-num').innerText = index + 1;
+            document.getElementById('topic-badge').innerText = q.topic;
+            document.getElementById('question-text').innerText = q.question;
+
+            // Render Options
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.options.forEach((optText, optIdx) => {
+                const isSelected = userAnswers[index] === optIdx;
+                
+                const optionBtn = document.createElement('button');
+                optionBtn.type = 'button';
+                optionBtn.onclick = () => selectOption(optIdx);
+                optionBtn.className = `w-full text-left p-4 rounded-xl border-2 transition flex items-start gap-3 ${
+                    isSelected 
+                        ? 'border-indigo-600 bg-indigo-50/80 text-indigo-950 font-semibold shadow-sm' 
+                        : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700'
+                }`;
+
+                const radioCircle = document.createElement('div');
+                radioCircle.className = `w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                    isSelected ? 'border-indigo-600 bg-indigo-600' : 'border-slate-400'
+                }`;
+                if (isSelected) {
+                    radioCircle.innerHTML = '<div class="w-2 h-2 rounded-full bg-white"></div>';
+                }
+
+                const textSpan = document.createElement('span');
+                textSpan.className = "text-sm md:text-base leading-snug";
+                textSpan.innerText = optText;
+
+                optionBtn.appendChild(radioCircle);
+                optionBtn.appendChild(textSpan);
+                container.appendChild(optionBtn);
+            });
+
+            // Update Navigation Buttons State
+            document.getElementById('btn-prev').disabled = index === 0;
+            const nextBtn = document.getElementById('btn-next');
+            if (index === questionsData.length - 1) {
+                nextBtn.innerHTML = 'Selesai <i data-lucide="check" class="w-4 h-4"></i>';
+                nextBtn.onclick = confirmSubmitExam;
+            } else {
+                nextBtn.innerHTML = 'Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>';
+                nextBtn.onclick = () => navigateQuestion(1);
+            }
+
+            renderNavigationGrid();
+            lucide.createIcons();
+        }
+
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestionIndex] = optionIndex;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function navigateQuestion(direction) {
+            const newIndex = currentQuestionIndex + direction;
+            if (newIndex >= 0 && newIndex < questionsData.length) {
+                loadQuestion(newIndex);
+            }
+        }
+
+        function renderNavigationGrid() {
+            const grid = document.getElementById('navigation-grid');
+            grid.innerHTML = '';
+
+            questionsData.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => loadQuestion(idx);
+
+                const isAnswered = userAnswers[idx] !== null;
+                const isActive = idx === currentQuestionIndex;
+
+                let classNames = "h-10 text-xs font-bold rounded-lg transition border flex items-center justify-center ";
+
+                if (isActive) {
+                    classNames += "bg-indigo-600 text-white border-indigo-700 ring-2 ring-indigo-300 ";
+                } else if (isAnswered) {
+                    classNames += "bg-emerald-500 text-white border-emerald-600 hover:bg-emerald-600 ";
+                } else {
+                    classNames += "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200 ";
+                }
+
+                btn.className = classNames;
+                btn.innerText = idx + 1;
+                grid.appendChild(btn);
+            });
+        }
+
+        function confirmSubmitExam() {
+            const unanswered = userAnswers.filter(a => a === null).length;
+            let message = "Apakah Anda yakin ingin menyelesaikan ujian ini?";
+            if (unanswered > 0) {
+                message = `Masih ada ${unanswered} soal yang belum dijawab! Yakin ingin menyelesaikan ujian?`;
+            }
+
+            if (confirm(message)) {
+                submitExam();
+            }
+        }
+
+        function submitExam() {
+            if (examSubmitted) return;
+            examSubmitted = true;
+
+            clearInterval(timerInterval);
+
+            // Calculate Score
+            let correctCount = 0;
+            questionsData.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            const wrongCount = questionsData.length - correctCount;
+            const finalScore = correctCount * 4; // Each question worth 4 points (25 * 4 = 100)
+
+            // Populate Modal
+            document.getElementById('modal-student-name').innerText = studentData.name;
+            document.getElementById('modal-student-class').innerText = studentData.class;
+            document.getElementById('modal-student-motto').innerText = `"${studentData.motto}"`;
+            document.getElementById('modal-score').innerText = finalScore;
+            document.getElementById('modal-correct-count').innerText = `${correctCount} Soal (+${correctCount * 4} Poin)`;
+            document.getElementById('modal-wrong-count').innerText = `${wrongCount} Soal`;
+
+            // Save final score globally
+            studentData.finalScore = finalScore;
+
+            // Show Result Modal
+            document.getElementById('modal-result').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function sendToWhatsApp() {
+            const teacherPhone = "6285377704248"; // 085377704248 in international format
+            
+            // Text template strictly containing ONLY student credentials and the FINAL SCORE as requested
+            const message = `Halo Bapak Reri Petra Nanda, M.Pd., Gr.,\nBerikut adalah hasil Ujian Mid Semester Biologi Online (Daring Kabut Asap SMA PGRI 2 Jambi):\n\nNama: ${studentData.name}\nKelas: ${studentData.class}\nMotto: ${studentData.motto}\nNilai Akhir: ${studentData.finalScore}/100`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${teacherPhone}?text=${encodedMessage}`;
+
+            window.open(waUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
